@@ -20,7 +20,8 @@ public class AppConfig {
     }
 
     private DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
+//        return new FixDiscountPolicy();
     }
 
     public OrderService orderService() {
