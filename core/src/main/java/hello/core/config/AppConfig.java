@@ -20,7 +20,7 @@ public class AppConfig {
         return new MemoryMemberRepository();
     }
 
-    @Bean(name = "memberServiceBySpring")
+    @Bean(name = "memberService")
     public MemberService memberService(){
         return new MemberServiceImpl(memberRepository());
     }
