@@ -1,10 +1,8 @@
 package hello.core.order;
 
 import hello.core.config.AppConfig;
-import hello.core.member.Grade;
-import hello.core.member.Member;
-import hello.core.member.MemberService;
-import hello.core.member.MemberServiceImpl;
+import hello.core.discount.RateDiscountPolicy;
+import hello.core.member.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,5 +30,15 @@ public class OrderServiceTest {
 
         // then
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
+    }
+
+    @Test
+    void fieldInjectionTest(){
+        OrderServiceImpl orderService = new OrderServiceImpl(); // (필드 주입 문제점) 스프링 없이 생성자로 객체를 만들경우, OrderServiceImpl가 의존하는 필드에 객체를 넣을 방법이 없다.
+        orderService.createOrder(1L, "itemA", 10000);
+
+        // 결국에 setter를 통해 주입해야한다 -> 스프링의 setter 주입 기능을 이용하자
+        orderService.setDiscountPolicy(new RateDiscountPolicy());
+        orderService.setMemberRepository(new MemoryMemberRepository());
     }
 }
