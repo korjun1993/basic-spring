@@ -16,24 +16,25 @@ public class OrderServiceImpl implements OrderService{
     // private DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
     // AppConfig 적용 후 -> DIP 충족 (interface 에만 의존)
-    @Autowired private MemberRepository memberRepository;
-    @Autowired private DiscountPolicy discountPolicy;
 
-//    @Autowired
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    /*@Autowired*/ private final MemberRepository memberRepository;
+    /*@Autowired*/ private final DiscountPolicy discountPolicy;
 
-    @Autowired // 변경 가능성이 있는 필드의 주입
-    public void setMemberRepository(MemberRepository memberRepository) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
-    }
-
-    @Autowired // 변경 가능성이 있는 필드의 주입
-    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
     }
+
+//    @Autowired // 변경 가능성이 있는 필드의 주입
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+//
+//    @Autowired // 변경 가능성이 있는 필드의 주입
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

@@ -13,5 +13,9 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )
 public class AutoAppConfig {
-
+    // <충돌 발생 테스트> 수동 Bean 등록 <-> 자동 Bean 등록
+    /*@Bean("memoryMemberRepository")
+    MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }*/
 }

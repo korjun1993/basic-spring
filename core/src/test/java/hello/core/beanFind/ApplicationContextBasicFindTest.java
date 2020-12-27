@@ -18,7 +18,7 @@ public class ApplicationContextBasicFindTest {
     @Test
     @DisplayName("빈 이름으로 조회하기")
     void findBeanByName(){
-        MemberService memberService = ac.getBean("memberServiceBySpring", MemberService.class);
+        MemberService memberService = ac.getBean("memberService", MemberService.class);
         assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
     }
 
