@@ -8,10 +8,11 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor // final 붙은 필드로 생성자 만듦
+// @RequiredArgsConstructor // final 붙은 필드로 생성자 만듦
 public class OrderServiceImpl implements OrderService{
     // AppConfig 적용 후
     // private DiscountPolicy discountPolicy = new RateDiscountPolicy();
@@ -19,13 +20,14 @@ public class OrderServiceImpl implements OrderService{
 
     // AppConfig 적용 후 -> DIP 충족 (interface 에만 의존)
 
-    /*@Autowired*/ private final MemberRepository memberRepository;
-    /*@Autowired*/ private final DiscountPolicy discountPolicy;
+    /*@Autowired */private final MemberRepository memberRepository;
+    /*@Autowired */private final DiscountPolicy discountPolicy;
 
-    /*public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, /*@Qualifier("rateDiscountPolicy")*/ DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }*/
+    }
 
 //    @Autowired // 변경 가능성이 있는 필드의 주입
 //    public void setMemberRepository(MemberRepository memberRepository) {
