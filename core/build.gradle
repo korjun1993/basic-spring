@@ -23,6 +23,8 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'javax.inject:javax.inject:1'
     implementation 'junit:junit:4.12'
 	implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 
